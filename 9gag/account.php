@@ -17,13 +17,15 @@
 					<li><a href="#">NSFW Clothing - Sale</a></li>
 				</ul>
 				<ul class="sagbanner">
-					<li><a class="signup" href ="signup.php">Sign up</a></li>
-					<li><a class="login" href ="#">Log in</a></li>
+					<li><a class="signup" href ="signup.php">+Upload</a></li>
+					<li><a class="pp" href="#" ><img src="pp.jpg" > </a></li>
+					<li><a class="bildirim" href="#">bildirim</a></li>
+					
 					<li>
 						<div id="dropdown">
 							<a class="search" href ="#">Search</a>
 							<div id="searchtext">
-							<input type="text" name="query" class="searchtext" tabindex="1" autocomplete="off" placeholder="Type to search">
+							<input type="text" name="query" class="searchtext" tabindex="1" autocomplete="off" placeholder="Type to searchâ€¦">
 							</div>
 						</div>
 					</li>
@@ -228,7 +230,7 @@
 					<a href="#">Privacy</a>
 					<a href="#">Jobs</a>
 					<a href="#">Contact</a><br>
-					9GAG � 2018
+					9GAG © 2018
 				</div>
 			</div>
 		</div>
