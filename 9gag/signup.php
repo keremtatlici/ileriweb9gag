@@ -17,7 +17,7 @@
 				</ul>
 				<ul class="sagbanner">
 					<li><a class="signup" href ="signup.php">Sign up</a></li>
-					<li><a class="login" href ="#">Log in</a></li>
+					<li><a class="login" href ="login.php">Log in</a></li>
 					<li>
 						<div id="dropdown">
 							<a class="search" href ="#">Search</a>

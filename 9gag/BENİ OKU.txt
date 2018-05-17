@@ -1,0 +1,7 @@
+KALANLAR
+
+-SEARCH
+-BEÐENÝ UNÝQ
+-YORUMA YORUM
+
+Celal hocam phpmyadmin sayfanýzda " uyeler " isimli veritabaný oluþturduktan sonra sql dosyasýný içe aktarabilirsiniz.Kolay Gelsin

@@ -1,4 +1,7 @@
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 	<head>
 		<title>9GAG: Go Fun The World</title>
@@ -14,10 +17,53 @@
 					<li><a href="#">Video</a></li>
 					<li><a href="#">Get Our App!</a></li>
 					<li><a href="#">NSFW Clothing - Sale</a></li>
+					<li><a href="#">
+					 <?php
+						session_start();
+							if(isset($_SESSION["nickname"])){
+								echo $_SESSION["nickname"];
+							}
+							
+					 ?>
+					</a></li>	
+					<li><a href="logout.php">
+					 <?php
+							if(isset($_SESSION["nickname"])){
+								echo "Log Out";
+							}
+							
+					 ?>
+					</a></li>	
 				</ul>
 				<ul class="sagbanner">
-					<li><a class="signup" href ="signup.php">Sign up</a></li>
-					<li><a class="login" href ="login.php">Log in</a></li>
+					<li>
+						<?php
+							if(isset($_SESSION["nickname"])){
+								echo '<a class="signup" href ="#">+Upload</a>';
+							}else
+							{
+								echo '<a class="signup" href ="signup.php">Sign up</a>';
+							}
+							
+						?>
+					</li>
+					<li> 
+						<?php
+							if(isset($_SESSION["nickname"])){
+							echo '<a class="pp" href="#" ><img src="pp.jpg" > </a>';
+							}
+						?>
+					</li>
+					<li>
+						<?php
+							if(isset($_SESSION["nickname"])){
+							echo '<a class="bildirim" href="#">bildirim</a>';
+							}else{
+								echo ' <a class="login" href ="login.php">Log in</a> ';
+							}
+						?>
+					
+					</li>
 					<li>
 						<div id="dropdown">
 							<a class="search" href ="#">Search</a>
@@ -32,23 +78,40 @@
 			<!-- BANNER SONU-->
 			
 			<div class="sagalt">
-			
-				<h2>Login</h2>
-				<form action="baglan_login.php" method="post">
-					<br>
-						Email Address
-						<input type="email" name="uye_email">
-					<br>
-					<br>
-						Password
-						<input type="password" name="uye_sifre">
-					<br>
-					<br>
-						<input type="submit" name = "submit" value="submit">
-					<br>
+				<form enctype="multipart/form-data" action="upload.php" method="POST">
+					
+					Select image to upload : <input name="uye_upload" type="file" /><br><br>
+					Write a title for your post :<input type= "text" name = "title"><br><br>
+					<input type="submit" value="Dosyayı Gönder" />
 				</form>
-			
-			</div>
+				
+				<?php
+					$location ='uploads/';
+					@$upcoming_file_location = $location . basename($_FILES["uye_upload"]['name']);
+					@$oldlocation = $_FILES["uye_upload"]["tmp_name"];
+					$post_owner_name = $_SESSION["nickname"];
+					@$post_title = $_POST["title"];
+					@$post_name = $_FILES["uye_upload"]["name"];
+					
+					if(move_uploaded_file($oldlocation, $upcoming_file_location ))
+					{
+						include("baglan.php");
+						
+						$sql_post = "INSERT INTO uye_post (post_owner_name , post_name , post_title) VALUES ('$post_owner_name' , '$post_name' ,' $post_title ') ";
+						$fetchpost=("SELECT * FROM uye_post WHERE post_title = '$post_title'");	
+						
+						mysqli_query($conn,$sql_post);
+						echo "upload is done";
+						echo "<br>". $post_name ;
+						$_SESSION["post_title"] =$post_title;
+						$_SESSION["post_owner_name"]= $post_owner_name;
+						$_SESSION["post_name"] = $post_name;
+						$_SESSION["post_location"] = $upcoming_file_location;
+						header("location:index.php");
+					}
+					
+					
+				?>
 				
 			</div>
 			<div class="solalt">

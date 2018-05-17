@@ -81,48 +81,32 @@
 				</div>
 				<div class ="sagalt_alt">
 					<div class="sagalt_alt_sol">
-						<div class="etiketler">
-							<a href="#"> Deadpool  </a>
-							<a href="#">  Mark Zuckerberg </a>
-							<a href="#"> Avengers  </a>
-							<a href="#"> Infinity War  </a>
-							<a href="#">  Thanos </a>
-							<a href="#">  Marvel </a>
-							<a href="#">  Gru </a>
-							<a href="#">  Stephen Hawking </a>
-							<a href="#"> RIP </a>
-							<a href="#">  Savage Patrick </a>
-							<a href="#">  Nokia </a>
-							<a href="#">  Black Panther </a>
-							<a href="#">  Monster Hunter World </a>
-							<a href="#">  Fortnite </a>
-							<a href="#">  Marvel </a>
-							<a href="#">  Nature is Lit </a>
-							<a href="#">  League of Legends </a>
-							<a href="#">  Cosplay </a>
-							<a href="#"> Engineering  </a>
-						</div>
+					
 						<div class="postlar">
 						
-						<?php
+							<?php
 							include("baglan.php");
 							$post_data_sql = mysqli_query($conn,"SELECT * FROM uye_post");
 							
-							while($b = mysqli_fetch_array($post_data_sql))
-							{
+							    @$post_title = $_GET["id"];
+								$_SESSION["post_title_comment"] = $post_title;
+								$post_titlee = $_SESSION["post_title_comment"];
+								
+								$ssql = "SELECT * FROM uye_post WHERE post_title = '$post_titlee'";
+							$roww=mysqli_fetch_array(mysqli_query($conn , $ssql));
 								echo
 								"<div class='post'>
-								<h1>".$b['post_title']."</h1>
-								<img src='uploads/".$b['post_name']."'style='max-width:500px;height:auto;'>
+								<h1>".$_SESSION['post_title_comment']."</h1>
+								<img src='uploads/".$roww['post_name']."'style='max-width:500px;height:auto;'>
 								<div class='point_com'>
-									<a href='#'>".$b['post_like']." points</a>
-									<a href='#'>".$b['post_comment']." comments</a>
+									<a href='#'>".$roww['post_like']." points</a>
+									<a href='#'>".$roww['post_comment']." comments</a>
 								</div>
 								<div class='buttons'>
 									<div class='buttons_sol'>
-										<a class='like' href='like.php?id=".$b['post_title']." '>like</a>
-										<a class='dislike' href='dislike.php?id=".$b['post_title']." '>dislike</a>
-										<a class='comment' href='post.php?id=".$b['post_title']." '>comment</a>
+										<a class='like' href='like.php?id=".$roww['post_title']." '>like</a>
+										<a class='dislike' href='dislike.php?id=".$roww['post_title']." '>dislike</a>
+										<a class='comment' href='comment.php?id=".$roww['post_title']." '>comment</a>
 										<a class='etc' href='#'>etc</a>
 										<a class='facebook' href='#'><b>facebook</b></a>
 										<a class='pinterest' href='#'><b>pinterest</b></a>
@@ -131,11 +115,24 @@
 								</div>
 							</div>";
 								
-								
-							}
+							?>
 							
-						?>
+							<form action = "comment.php" method = "post">
+								<textarea name="comment_content" style="width:500px;resize:none;height:50px;"></textarea><br>
+								<input type ="submit" value = "submit" name = "submit">
+							</form>
 							
+							<div class="comment"><br>
+								<?php
+									
+									$comment_sql = mysqli_query($conn , "SELECT * FROM comment WHERE comment_post_title = '$post_titlee'");
+									while($comment_row = mysqli_fetch_array($comment_sql))
+									{
+										echo $comment_row["comment_owner"]." : ". $comment_row["comment_content"] ."<br><br> ";
+									}
+									
+								?>
+							</div>
 							
 						</div>
 					</div>
@@ -226,7 +223,7 @@
 					<a href="#">Privacy</a>
 					<a href="#">Jobs</a>
 					<a href="#">Contact</a><br>
-					9GAG © 2018
+					9GAG Â© 2018
 				</div>
 			</div>
 		</div>

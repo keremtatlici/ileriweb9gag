@@ -10,6 +10,9 @@ $sql = "INSERT INTO uye_data (uye_nickname,uye_email,uye_sifre) VALUES('$uye_nic
 
  
    mysqli_query($conn,$sql);
+   header("location:login.php");
+   
+   
    
    mysqli_close($conn);
 ?>
