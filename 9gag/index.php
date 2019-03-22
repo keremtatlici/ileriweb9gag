@@ -36,6 +36,7 @@
 				<ul class="sagbanner">
 					<li>
 						<?php
+						
 							if(isset($_SESSION["nickname"])){
 								echo '<a class="signup" href ="upload.php">+Upload</a>';
 							}else
@@ -74,11 +75,8 @@
 			</div>
 			
 			<!-- BANNER SONU-->
-			
+		<div class class="down">
 			<div class="sagalt">
-				<div class="sagalt_ust">
-					<img src="https://tpc.googlesyndication.com/simgad/17566016470595348152?sqp=4sqPyQQlQiMqIQhaEAEdAAC0QiABKAEwCTgDQPCTCUgAUAFYAWBacAJ4AQ&rs=AOga4qm19uzzJ1UDBrbApKwCcVpuYg4odg" border="0" width="970">
-				</div>
 				<div class ="sagalt_alt">
 					<div class="sagalt_alt_sol">
 						<div class="etiketler">
@@ -106,7 +104,7 @@
 						
 						<?php
 							include("baglan.php");
-							$post_data_sql = mysqli_query($conn,"SELECT * FROM uye_post");
+							$post_data_sql = mysqli_query($conn,"SELECT * FROM uye_post ORDER BY post_id DESC");
 							
 							while($b = mysqli_fetch_array($post_data_sql))
 							{
@@ -228,6 +226,7 @@
 					<a href="#">Contact</a><br>
 					9GAG © 2018
 				</div>
+			</div>
 			</div>
 		</div>
 		
